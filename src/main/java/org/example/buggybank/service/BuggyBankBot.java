@@ -2,7 +2,6 @@ package org.example.buggybank.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.buggybank.config.BotConfig;
-import org.example.buggybank.constant.ConstantBuggyBankBot;
 import org.example.buggybank.model.User;
 import org.example.buggybank.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,16 +30,17 @@ public class BuggyBankBot extends TelegramLongPollingBot {
     @Autowired
     private UserRepository userRepository;
 
-    private ConstantBuggyBankBot constant;
-
     public BuggyBankBot(BotConfig config) {
+
         this.config = config;
+
         List<BotCommand> listOfCommands = new ArrayList<>();
         listOfCommands.add(new BotCommand(COMMAND_START, DESCRIPTION_START));
         listOfCommands.add(new BotCommand(COMMAND_MY_DATA, DESCRIPTION_MY_DATA));
         listOfCommands.add(new BotCommand(COMMAND_DELETE_DATA, DESCRIPTION_DELETE_DATA));
         listOfCommands.add(new BotCommand(COMMAND_HELP, DESCRIPTION_HELP));
         listOfCommands.add(new BotCommand(COMMAND_SETTINGS, DESCRIPTION_SETTINGS));
+
         try {
             this.execute(new SetMyCommands(listOfCommands, new BotCommandScopeDefault(), null));
         }
@@ -51,11 +51,13 @@ public class BuggyBankBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
+
         return config.getBotName();
     }
 
     @Override
     public String getBotToken() {
+
         return config.getBotToken();
     }
 
@@ -72,10 +74,10 @@ public class BuggyBankBot extends TelegramLongPollingBot {
                     startCommandReceived(chatId, update.getMessage().getChat().getFirstName());
                     break;
                 case "/help":
-                    sendMessege(chatId, HELP_TEXT);
+                    sendMessage(chatId, HELP_TEXT);
                     break;
                 default:
-                    sendMessege(chatId, "Invalid command");
+                    sendMessage(chatId, "Invalid command");
             }
         }
     }
@@ -98,7 +100,8 @@ public class BuggyBankBot extends TelegramLongPollingBot {
         }
     }
 
-    private void sendMessege (long chatId, String textToSend) {
+    private void sendMessage(long chatId, String textToSend) {
+
         SendMessage message = new SendMessage();
         message.setChatId(chatId);
         message.setText(textToSend);
@@ -111,7 +114,8 @@ public class BuggyBankBot extends TelegramLongPollingBot {
         }
     }
     private void startCommandReceived(long chatId, String name) {
-        sendMessege(chatId, constant.greetings(name));
-        log.info("Starting command: {}", constant.greetings(name));
+        String message = String.format(GREETINGS, name);
+        sendMessage(chatId, message);
+        log.info("Starting command: {}", message);
     }
 }

@@ -2,9 +2,13 @@ package org.example.buggybank.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
+@Setter
+@Getter
 @Entity(name = "usersDataTable")
 public class User {
 
@@ -18,46 +22,6 @@ public class User {
     private String userName;
 
     private Timestamp registeredDate;
-
-    public Long getChatId() {
-        return chatId;
-    }
-
-    public void setChatId(Long chatId) {
-        this.chatId = chatId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public Timestamp getRegisteredDate() {
-        return registeredDate;
-    }
-
-    public void setRegisteredDate(Timestamp registeredDate) {
-        this.registeredDate = registeredDate;
-    }
 
     @Override
     public String toString() {
