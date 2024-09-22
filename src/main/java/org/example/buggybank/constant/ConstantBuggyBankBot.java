@@ -14,13 +14,16 @@ public class ConstantBuggyBankBot {
     public final static String DESCRIPTION_HELP = "Подробнее о командах";
     public final static String DESCRIPTION_SETTINGS = "Настройки бота";
 
+    public final static String YES_BUTTON = "YES_BUTTON";
+    public final static String NO_BUTTON = "NO_BUTTON";
+
     public final static String HELP_TEXT = """
             Полный развернутый список команд:
 
             /start - позволяет запустить бота, поприветствовать Вас и зарегистрировать, если вы присоеденились к нам впервые :)
             /mydata - позволяет просмотреть данные о Вас, бережно хранимые на наших серверах.
             /deletedata - боитесь за свою конфинденциалность? Эта кнопка удалит все данные связанные с вами!
-            /help - теряетесь в догадках, что елать с ботом? Ознакомься с его полным функционалом тут.
+            /help - теряетесь в догадках, что делать с ботом? Ознакомься с его полным функционалом тут.
             /settings - что-то на мдром и заумном, можно отключить фичи
             """;
 
